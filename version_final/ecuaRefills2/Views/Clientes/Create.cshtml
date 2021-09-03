@@ -1,0 +1,133 @@
+﻿@model ecuaRefills2.Entities.Cliente
+
+@{
+    ViewData["Title"] = "Nuevo Cliente";
+}
+
+<div class="container">
+    <div>
+        <form asp-action="Create">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>Nuevo Cliente</h1>
+                </div>
+                <div class="col-md-2">
+                    <a asp-action="Index" class="btn btn-primary float-right" style=" margin: 2px; border-radius:4px;">Regresar</a>
+                </div>
+            </div>
+            <hr />
+            <br />
+            <div class="form-row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group col-md-12">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-person-badge"></i></div>
+                        </div>
+                        <input asp-for="Nombre" class="form-control" placeholder="Nombres y Apellidos" />
+                    </div>
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Cedula" class="control-label "></label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-credit-card"></i></div>
+                        </div>
+                        <input asp-for="Cedula" class="form-control" id="num" minlength="10" maxlength="10" title="Hasta 10 números" placeholder="Hasta 10 números" />
+                    </div>
+                    <span asp-validation-for="Cedula" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="CorreoElectronico" class="control-label "></label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-envelope"></i></div>
+                        </div>
+                        <input asp-for="CorreoElectronico" class="form-control" placeholder="Tu@servidor.com" />
+                    </div>
+                    <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Telefono" class="control-label"></label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-telephone"></i></div>
+                        </div>
+                        <input asp-for="Telefono" class="form-control" id="num" minlength="10" maxlength="10" title="Hasta 10 números" placeholder="Hasta 10 números" />
+                    </div>
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label ">Provincia</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-building"></i></div>
+                        </div>
+                        <select id="ProvinciaList" asp-items="@ViewBag.Provincias" class="form-control">
+                            <option>Seleccione una provincia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="CiudadId" class="control-label ">Ciudad</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-geo-alt"></i></div>
+                        </div>
+                        <select id="CiudadList" asp-for="CiudadId" class="form-control">
+                            <option value="-1">Seleccione una ciudad</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-12">
+                    <input type="submit" value="Añadir Cliente" style="margin: 2px; border-radius: 4px; margin-top: 60px;" class="btn btn-info float-right" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#ProvinciaList").change(function () {
+            $("#CiudadList").empty();
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("LocalizarCiudad")',
+                dataType: 'json',
+                data: { id: $("#ProvinciaList").val() },
+
+                success: function (ciudades) {
+                    $('#CiudadList').append('<option value="' + -1 + '">' +
+                        "Seleccione una Ciudad" + '</option)');
+                    $.each(ciudades, function (i, ciudad) {
+                        $('#CiudadList').append('<option value="' + ciudad.value + '">' +
+                            ciudad.text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('No pudo recuperar ciudades' + ex);
+                }
+            });
+            return false;
+        })
+    })
+    </script>
+    <script type="text/javascript">
+        // Initialize our function when the document is ready for events.
+        jQuery(document).ready(function () {
+            // Listen for the input event.
+            jQuery("#num").on('input', function (evt) {
+                // Allow only numbers.
+                jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+    </script>
+}

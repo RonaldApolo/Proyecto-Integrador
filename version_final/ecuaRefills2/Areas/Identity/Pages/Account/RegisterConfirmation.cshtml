@@ -1,0 +1,34 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<div class="container text-center" >
+    @{
+        if (@Model.DisplayConfirmAccountLink)
+        {
+        <div>
+            <div class="card" style="background-color: #DEEFFF; width:600px; height:500px; margin-left:230px; border-radius: 15px;">
+                <div class="card-header text-center" style="background-color: #03D8F3">
+                    <img src="~/Imagenes/sobre_balnco.png" height="130" width="130"/>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title"><strong>¡REGISTRO EXITOSO!</strong></h1>
+                    <hr style="border: 1px solid #B3D5F2"/>
+                    <h3 class="card-text">¡HOLA! Verifica tu cuenta para tener acceso a mas funcionalidades en EcuaRefills.</h3>
+                    <h3 class="card-text">Haz click en el boton de abajo para confirmar tu correo electrónico.</h3>
+                    <br />
+                    <a id="confirm-link" href="@Model.EmailConfirmationUrl" class="btn btn-success btn-lg" style="border-radius:30px; ">Confirmar mi cuenta</a>
+                </div>
+            </div>
+        </div>
+        }
+        else
+        {
+            <p>
+                Por favor revise su correo electrónico para confirmar su cuenta.
+            </p>
+        }
+    }
+</div>

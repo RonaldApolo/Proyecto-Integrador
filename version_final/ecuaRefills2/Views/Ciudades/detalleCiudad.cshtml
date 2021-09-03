@@ -1,0 +1,36 @@
+﻿@model ecuaRefills2.Entities.Ciudad
+
+@{
+    ViewData["Title"] = "detalleCiudad";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <h1>Ciudad - Detalle</h1>
+    </div>
+    <div class="col-md-2">
+        <a asp-action="CiudadIndex" class="btn btn-primary float-right" style=" margin: 2px; border-radius:4px;">Regresar</a>
+    </div>
+</div>
+<hr />
+<br />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Provincia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Provincia.Nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditarCiudad" asp-route-id="@Model.CiudadId" style="margin: 2px; border-radius: 4px; margin-top: 60px;" class="btn btn-info">Editar</a>
+
+</div>

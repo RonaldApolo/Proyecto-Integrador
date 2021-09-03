@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ecuaRefills2.Entities.Provincia>
+
+@{
+    ViewData["Title"] = "ProvinciaIndex";
+}
+<div>
+    <div class="row">
+        <div class="col-10">
+            <h1>PROVINCIAS</h1>
+        </div>
+        <div class="col-2">
+            <a asp-action="CrearProvincia" class="btn btn-primary float-right">Nueva Provincia</a>
+        </div>
+    </div>
+    <hr />
+    <div>
+        @if (TempData["mensaje"] != null)
+        {
+            <div class="alert alert-success alert-dimissible fade show" role="alert">
+                @TempData["mensaje"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        <form asp-controller="Provincias" asp-action="ProvinciaIndex">
+            <div class="form-row">
+                <div class="col-9">
+                    <input type="text" name="SearchString" class="form-control" placeholder="Nombre de la provincia">
+                </div>
+                <div class="col-1">
+                    <input type="submit" value="Filtrar" class="form-control btn btn-info">
+                </div>
+            </div>
+        </form>
+        <br />
+        <br />
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td class="text-center">
+                                <a asp-action="EditarProvincia" asp-route-id="@item.ProvinciaId"><img src="~/Imagenes/editar.png" height="30" width="30" /></a>
+                                <a asp-action="DetalleProvincia" asp-route-id="@item.ProvinciaId"><img src="~/Imagenes/ver.png" height="30" width="30" /></a>
+                                <a asp-action="BorrarProvincia" asp-route-id="@item.ProvinciaId"><img src="~/Imagenes/eliminar.png" height="30" width="30" /></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

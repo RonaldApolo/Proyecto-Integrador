@@ -1,0 +1,14 @@
+﻿body {
+}
+.menu-inicial {
+    position: fixed;
+    width: 100%;
+    z-index: 300;
+}
+
+
+.input-form {
+    background-color: #F4F5F9 !important;
+    border: 1px solid #F5F6FA;
+}
+

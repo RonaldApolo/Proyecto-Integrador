@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ecuaRefills2.Entities.Ciudad>
+
+@{
+    ViewData["Title"] = "CiudadIndex";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h1>CIUDADES</h1>
+        </div>
+        <div class="col-2">
+            <a asp-action="CrearCiudad" class="btn btn-primary float-right">Nueva Ciudad</a>
+        </div>
+    </div>
+    <hr />
+    <div>
+        @if (TempData["mensaje"] != null)
+        {
+            <div class="alert alert-success alert-dimissible fade show" role="alert">
+                @TempData["mensaje"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+        <form asp-controller="Ciudades" asp-action="CiudadIndex">
+            <div class="form-row">
+                <div class="col-9">
+                    <input type="text" name="SearchString" class="form-control" placeholder="Nombre de la ciudad / provincia">
+                </div>
+                <div class="col-1">
+                    <input type="submit" value="Filtrar" class="form-control btn btn-info">
+                </div>
+            </div>
+        </form>
+        <br />
+        <br />
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Provincia)
+                        </th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Provincia.Nombre)
+                            </td>
+                            <td class="text-center">
+                                <a asp-action="EditarCiudad" asp-route-id="@item.CiudadId"><img src="~/Imagenes/editar.png" height="30" width="30" /></a>
+                                <a asp-action="DetalleCiudad" asp-route-id="@item.CiudadId"><img src="~/Imagenes/ver.png" height="30" width="30" /></a>
+                                <a asp-action="BorrarCiudad" asp-route-id="@item.CiudadId"><img src="~/Imagenes/eliminar.png" height="30" width="30" /></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

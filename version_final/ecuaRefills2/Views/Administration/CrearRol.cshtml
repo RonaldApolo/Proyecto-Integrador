@@ -1,0 +1,46 @@
+﻿@model ecuaRefills2.Entities.Rol;
+
+
+@{
+    ViewData["Title"] = "Crear Rol";
+}
+
+<h1>Crear Rol</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CrearRol">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label">Nombre del Rol</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="bi bi-person-plus"></i></div>
+                    </div>
+                    <input asp-for="RoleName" class="form-control" required />
+                </div>
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <br />
+            <br />
+            <div class="form-row" >
+                <div >
+                    <a asp-controller="Administration" asp-action="ListRoles" class="btn btn-primary">Regresar</a>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="AñadirRol" class="btn btn-info" style="margin-left:5px"/>
+                </div>
+            </div>
+            
+
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,55 @@
+﻿@model ecuaRefills2.Entities.Cliente
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-10">
+            <h1>Clientes - Detalle</h1>
+        </div>
+        <div class="col-md-2">
+            <a asp-action="Index" class="btn btn-primary float-right" style=" margin: 2px; border-radius:4px;">Regresar</a>
+        </div>
+    </div>
+    <hr />
+    <h4 class="text-primary">Detalle del cliente con identificación <strong>@Model.Cedula</strong> </h4>
+    <br />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CorreoElectronico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CorreoElectronico)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ciudad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ciudad.Nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ClienteId" style="margin: 2px; border-radius: 4px; margin-top: 60px;" class="btn btn-info">Editar</a> 
+   
+</div>

@@ -1,0 +1,23 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Tu correo electrónico ha sido confirmado.";
+}
+
+<div class="container text-center">
+    <div>
+        <div class="card" style="background-color: #DEEFFF; width:600px; height:500px; margin-left:230px; border-radius: 15px;">
+            <div class="card-header text-center" style="background-color: #03D8F3">
+                <img src="~/Imagenes/72-722844_email-id-verification-reminder-plugin-business-removebg-preview.png" height="130" width="130" />
+            </div>
+            <div class="card-body">
+                <h1 class="card-title"><strong>¡TU CUENTA HA SIDO CONFRIMADA!</strong></h1>
+                <hr style="border: 1px solid #B3D5F2" />
+                <h3 class="card-text">Inicia sesion y empieza a disfrutar de</h3>
+                <h2 class="card-text">EcuaRefills</h2>
+                <br />
+                <a id="confirm-link" asp-area="Identity" asp-page="/Account/Login" class="btn btn-success btn-lg" style="border-radius:30px; ">Continuar</a>
+            </div>
+        </div>
+    </div>
+</div>
